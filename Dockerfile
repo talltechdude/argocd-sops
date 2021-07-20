@@ -3,8 +3,10 @@ FROM viaductoss/ksops:v2.5.7 as ksops-builder
 # patch argocd repo server to be able to decrypt secrets
 FROM argoproj/argocd:v2.0.4
 
+# renovate: datasource=github-releases depName=mozilla/sops
 ARG SOPS_VERSION="v3.6.1"
-ARG HELM_SECRETS_VERSION="v3.8.2"
+# renovate: datasource=github-releases depName=jkroepke/helm-secrets
+ARG HELM_SECRETS_VERSION="v3.8.0"
 
 # Switch to root for the ability to perform install
 USER root
