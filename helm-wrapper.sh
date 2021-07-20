@@ -13,6 +13,7 @@ then
     # handle the return code ourselves.
     pwd 1>&2
     set 1>&2
+    export HELM_PLUGINS="/home/argocd/.local/share/helm/plugins/"
     out=$(helm.bin secrets $@)
     code=$?
     if [ $code -eq 0 ]; then
