@@ -5,7 +5,7 @@
     "dependencyDashboard": true,
     "prHourlyLimit": 10,
     "semanticCommits": "enabled",
-    "automerge": true,
+    "requiredStatusChecks": null,
     "regexManagers": [
         {
             "fileMatch": [
@@ -15,6 +15,17 @@
                 "datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\sARG .*?_VERSION=(?<currentValue>.*)\\s"
             ],
             "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
+        }
+    ],
+    "packageRules": [
+        {
+            "matchUpdateTypes": [
+                "minor",
+                "patch",
+                "pin",
+                "digest"
+            ],
+            "automerge": true
         }
     ]
 }
