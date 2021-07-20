@@ -27,6 +27,8 @@ RUN apt-get update && \
     apt-get install -y \
     curl \
     gpg && \
+    nano && \
+    sudo && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     curl -o /usr/local/bin/sops -L https://github.com/mozilla/sops/releases/download/${SOPS_VERSION}/sops-${SOPS_VERSION}.linux && \
@@ -44,9 +46,11 @@ RUN apt-get update && \
 
     mv helm helm.bin && \
     mv helm2 helm2.bin && \
-    mv helm-wrapper.sh helm && \
+    mv helm-wrapper.sh /home/argocd/helm && \
+    ln -s /home/argocd/helm helm && \
+    chmod +rwx /home/argocd/helm && \
     ln helm helm2 && \
-    chmod +x helm helm2
+    chmod +rwx helm helm2
 
 # Set the kustomize home directory
 ENV XDG_CONFIG_HOME=$HOME/.config
