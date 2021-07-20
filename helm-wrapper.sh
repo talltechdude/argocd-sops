@@ -1,7 +1,5 @@
 #!/bin/bash
 
-echo "starting wrapper" 1>&2
-
 # helm secrets only supports a few helm commands
 if [ $1 = "template" ] || [ $1 = "install" ] || [ $1 = "upgrade" ] || [ $1 = "lint" ] || [ $1 = "diff" ]
 then 
@@ -11,14 +9,11 @@ then
     # will cause a parsing error from argocd, so we need to remove them.
     # We cannot use exec here as we need to pipe the output so we call helm in a subprocess and
     # handle the return code ourselves.
-    pwd 1>&2
-    set 1>&2
-    export HELM_PLUGINS="/home/argocd/.local/share/helm/plugins/"
-    out=$(helm.bin secrets $@)
+    out=$(HELM_PLUGINS="/home/argocd/.local/share/helm/plugins/" helm.bin secrets $@)
     code=$?
     if [ $code -eq 0 ]; then
         # printf insted of echo here because we really don't want any backslash character processing
-        printf '%s\n' "$out" | sed -E "/^removed '.+\.dec'$/d"      
+        printf '%s\n' "$out" | sed -E "/^removed '.+\.dec'$/d"
         exit 0
     else
         exit $code
