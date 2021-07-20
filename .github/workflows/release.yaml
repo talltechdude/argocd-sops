@@ -25,7 +25,10 @@ jobs:
         uses: cycjimmy/semantic-release-action@v2
         with:
           dry_run: true
-          semantic_version: 17.0.4
+          semantic_version: 17.4.4
+          extra_plugins: |
+            @semantic-release/changelog
+            @semantic-release/git
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Set outputs
@@ -95,7 +98,10 @@ jobs:
         uses: cycjimmy/semantic-release-action@v2
         with:
           dry_run: false
-          semantic_version: 17.0.4
+          semantic_version: 17.4.4
+          extra_plugins: |
+            @semantic-release/changelog
+            @semantic-release/git
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Echo Semantic Release Versions
