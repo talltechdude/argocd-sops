@@ -19,7 +19,6 @@ RUN apt-get update && \
     gpg && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-    helm plugin install https://github.com/jkroepke/helm-secrets --version ${HELM_SECRETS_VERSION} && \
     curl -o /usr/local/bin/sops -L https://github.com/mozilla/sops/releases/download/${SOPS_VERSION}/sops-${SOPS_VERSION}.linux && \
     chmod +x /usr/local/bin/sops && \
     cd /usr/local/bin && \
@@ -43,3 +42,5 @@ COPY --from=ksops-builder /go/src/github.com/viaduct-ai/kustomize-sops/*  $KUSTO
 
 # Switch back to non-root user
 USER argocd
+
+RUN helm plugin install https://github.com/jkroepke/helm-secrets --version ${HELM_SECRETS_VERSION}
