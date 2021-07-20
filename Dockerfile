@@ -19,7 +19,7 @@ ARG HELM_SECRETS_VERSION=v3.8.2
 # Switch to root for the ability to perform install
 USER root
 
-#COPY helm-wrapper.sh /usr/local/bin/
+COPY helm-wrapper.sh /usr/local/bin/
 COPY argocd-repo-server-wrapper /usr/local/bin/
 COPY --from=helm-sops-builder /go/helm-sops/helm-sops /usr/local/bin/
 
@@ -32,20 +32,21 @@ RUN apt-get update && \
     curl -o /usr/local/bin/sops -L https://github.com/mozilla/sops/releases/download/${SOPS_VERSION}/sops-${SOPS_VERSION}.linux && \
     chmod +x /usr/local/bin/sops && \
     cd /usr/local/bin && \
-    mv argocd-repo-server _argocd-repo-server && \
-    mv argocd-repo-server-wrapper argocd-repo-server && \
-    chmod 755 argocd-repo-server && \
-    mv helm _helm && \
-    mv helm2 _helm2 && \
-    mv helm-sops helm && \
-    ln helm helm2
 
-    # cd /usr/local/bin && \
-    # mv helm helm.bin && \
-    # mv helm2 helm2.bin && \
-    # mv helm-wrapper.sh helm && \
-    # ln helm helm2 && \
-    # chmod +x helm helm2
+
+    # mv argocd-repo-server _argocd-repo-server && \
+    # mv argocd-repo-server-wrapper argocd-repo-server && \
+    # chmod 755 argocd-repo-server && \
+    # mv helm _helm && \
+    # mv helm2 _helm2 && \
+    # mv helm-sops helm && \
+    # ln helm helm2
+
+    mv helm helm.bin && \
+    mv helm2 helm2.bin && \
+    mv helm-wrapper.sh helm && \
+    ln helm helm2 && \
+    chmod +x helm helm2
 
 # Set the kustomize home directory
 ENV XDG_CONFIG_HOME=$HOME/.config
@@ -62,4 +63,4 @@ COPY --from=ksops-builder /go/src/github.com/viaduct-ai/kustomize-sops/*  $KUSTO
 # Switch back to non-root user
 USER argocd
 
-#RUN helm plugin install https://github.com/jkroepke/helm-secrets --version ${HELM_SECRETS_VERSION}
+RUN helm plugin install https://github.com/jkroepke/helm-secrets --version ${HELM_SECRETS_VERSION}
