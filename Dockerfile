@@ -31,7 +31,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     curl -o /usr/local/bin/sops -L https://github.com/mozilla/sops/releases/download/${SOPS_VERSION}/sops-${SOPS_VERSION}.linux && \
     chmod +x /usr/local/bin/sops && \
-
+    cd /usr/local/bin && \
     mv argocd-repo-server _argocd-repo-server && \
     mv argocd-repo-server-wrapper argocd-repo-server && \
     chmod 755 argocd-repo-server && \
