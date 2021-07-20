@@ -5,6 +5,7 @@
     "dependencyDashboard": true,
     "prHourlyLimit": 10,
     "semanticCommits": "enabled",
+    "automerge": true,
     "regexManagers": [
         {
             "fileMatch": [
