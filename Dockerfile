@@ -26,8 +26,8 @@ COPY --from=helm-sops-builder /go/helm-sops/helm-sops /usr/local/bin/
 RUN apt-get update && \
     apt-get install -y \
     curl \
-    gpg && \
-    nano && \
+    gpg \
+    nano \
     sudo && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
