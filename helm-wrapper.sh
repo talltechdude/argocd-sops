@@ -3,13 +3,22 @@
 # helm secrets only supports a few helm commands
 if [ $1 = "template" ] || [ $1 = "install" ] || [ $1 = "upgrade" ] || [ $1 = "lint" ] || [ $1 = "diff" ]
 then 
+    extraArgs=""
+    if ! [[ "$@" =~ '-f' ]]; then
+        if [ -f "secrets.yaml" ]; then
+            extraArgs="$extraArgs -f secrets.yaml"
+        fi
+        if [ -f "values.yaml" ]; then
+            extraArgs="$extraArgs -f values.yaml"
+        fi
+    fi
     # Helm secrets add some useless outputs to every commands including template, namely
     # 'remove: <secret-path>.dec' for every decoded secrets.
     # As argocd use helm template output to compute the resources to apply, these output
     # will cause a parsing error from argocd, so we need to remove them.
     # We cannot use exec here as we need to pipe the output so we call helm in a subprocess and
     # handle the return code ourselves.
-    out=$(HELM_PLUGINS="/home/argocd/.local/share/helm/plugins/" helm.bin secrets $@)
+    out=$(HELM_PLUGINS="/home/argocd/.local/share/helm/plugins/" helm.bin secrets $@ $extraArgs)
     code=$?
     if [ $code -eq 0 ]; then
         # printf insted of echo here because we really don't want any backslash character processing
