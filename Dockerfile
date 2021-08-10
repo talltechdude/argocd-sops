@@ -1,4 +1,4 @@
-FROM viaductoss/ksops:v2.5.7 as ksops-builder
+FROM viaductoss/ksops:v2.6.0 as ksops-builder
 
 # patch argocd repo server to be able to decrypt secrets
 FROM argoproj/argocd:v2.0.5
