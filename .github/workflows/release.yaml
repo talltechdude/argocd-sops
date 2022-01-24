@@ -98,7 +98,7 @@ jobs:
         uses: cycjimmy/semantic-release-action@v2
         with:
           dry_run: false
-          semantic_version: 17.4.4
+          semantic_version: 18
           extra_plugins: |
             @semantic-release/changelog
             @semantic-release/git
