@@ -23,10 +23,8 @@ RUN apt-get update && \
     chmod +x /usr/local/bin/sops && \
     cd /usr/local/bin && \
     mv helm helm.bin && \
-    mv helm2 helm2.bin && \
     mv helm-wrapper.sh helm && \
-    ln helm helm2 && \
-    chmod +rwx helm helm2
+    chmod +rwx helm
 
 # Set the kustomize home directory
 ENV XDG_CONFIG_HOME=$HOME/.config

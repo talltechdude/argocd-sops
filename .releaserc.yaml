@@ -15,7 +15,7 @@ analyzeCommits:
   - path: "@semantic-release/commit-analyzer"
     releaseRules:
     - type: "feat"
-      release: "patch"
+      release: "minor"
     - type: "hotfix"
       release: "patch"
     - type: "patch"
