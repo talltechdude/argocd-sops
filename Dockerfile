@@ -39,7 +39,7 @@ COPY --from=ksops-builder /go/bin/kustomize /usr/local/bin/kustomize
 COPY --from=ksops-builder /go/src/github.com/viaduct-ai/kustomize-sops/*  $KUSTOMIZE_PLUGIN_PATH/viaduct.ai/v1/${PKG_NAME}/
 
 # Switch back to non-root user
-USER argocd
+USER 999
 
 # Install Helm-Secrets plugin
 ENV HELM_PLUGINS="/home/argocd/.local/share/helm/plugins/"
