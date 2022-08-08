@@ -6,7 +6,7 @@ FROM argoproj/argocd:v2.4.8
 # renovate: datasource=github-releases depName=mozilla/sops
 ARG SOPS_VERSION=v3.7.3
 # renovate: datasource=github-releases depName=jkroepke/helm-secrets
-ARG HELM_SECRETS_VERSION=v3.14.1
+ARG HELM_SECRETS_VERSION=v3.15.0
 
 # Switch to root for the ability to perform install
 USER root
