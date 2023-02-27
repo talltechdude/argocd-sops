@@ -1,7 +1,7 @@
 FROM viaductoss/ksops:v3.1.1 as ksops-builder
 
 # patch argocd repo server to be able to decrypt secrets
-FROM argoproj/argocd:v2.6.2
+FROM argoproj/argocd:v2.6.3
 
 # renovate: datasource=github-releases depName=mozilla/sops
 ARG SOPS_VERSION=v3.7.3
