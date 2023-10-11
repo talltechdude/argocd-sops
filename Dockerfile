@@ -4,7 +4,7 @@ FROM viaductoss/ksops:v3.1.1 as ksops-builder
 FROM argoproj/argocd:v2.6.15
 
 # renovate: datasource=github-releases depName=mozilla/sops
-ARG SOPS_VERSION=v3.8.0
+ARG SOPS_VERSION=v3.8.1
 # renovate: datasource=github-releases depName=jkroepke/helm-secrets
 ARG HELM_SECRETS_VERSION=v3.15.0
 
