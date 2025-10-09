@@ -12,7 +12,7 @@ env:
 jobs:
   refs:
     name: Prepare CI Vars
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-24.04
     outputs:
       sha_short: ${{ steps.refs.outputs.sha_short }}
       short_ref: ${{ steps.refs.outputs.short_ref }}
@@ -53,7 +53,7 @@ jobs:
   argocd-image:
     name: Build ARGO
     needs: refs
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Source checkout
         uses: actions/checkout@v3
@@ -76,7 +76,7 @@ jobs:
 
   release:
     name: Semantic Release Images and Artifacts
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-24.04
     needs: [ refs, argocd-image ]
     env:
       DOCKER_USERNAME: ${{ github.repository_owner }}
