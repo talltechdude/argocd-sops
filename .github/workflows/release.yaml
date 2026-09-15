@@ -25,7 +25,7 @@ jobs:
         uses: cycjimmy/semantic-release-action@v2
         with:
           dry_run: true
-          semantic_version: 18
+          semantic_version: 25
           extra_plugins: |
             @semantic-release/changelog
             @semantic-release/git
@@ -98,7 +98,7 @@ jobs:
         uses: cycjimmy/semantic-release-action@v2
         with:
           dry_run: false
-          semantic_version: 18
+          semantic_version: 25
           extra_plugins: |
             @semantic-release/changelog
             @semantic-release/git
